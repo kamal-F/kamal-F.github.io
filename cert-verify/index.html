@@ -2,11 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Certificate Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 30px auto; text-align: center; }
+  </style>
 </head>
 <body>
-  <h1>Certificate Verification</h1>
-  <p>This page will be used to verify certificates.</p>
+  <h2>Verifying certificate...</h2>
+  <p>If this page does not redirect automatically, please click the button below.</p>
+  <p id="fallback"></p>
+
+  <script>
+    // GANTI ini dengan URL Web App Apps Script Anda
+    const APP_SCRIPT_BASE = "https://script.google.com/macros/s/AKfycbysVO25_NWB-6Rrz1fq7MufHv7vV9QOOCrLgkGNZVkSzuY-fYdRn-nsYyIQ765M0ypK/exec";
+
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("t");   // kita pakai ?t=... di GitHub
+
+    if (!token) {
+      document.body.innerHTML = "<h2>Invalid access</h2><p>No token provided.</p>";
+    } else {
+      const target = APP_SCRIPT_BASE + "?token=" + encodeURIComponent(token);
+      // Tampilkan fallback link
+      document.getElementById("fallback").innerHTML =
+        '<a href="' + target + '">Click here if not redirected</a>';
+
+      // Redirect otomatis
+      window.location.href = target;
+    }
+  </script>
 </body>
 </html>
