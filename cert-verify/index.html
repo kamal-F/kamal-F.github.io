@@ -18,7 +18,7 @@
     const APP_SCRIPT_BASE = "https://script.google.com/macros/s/AKfycby2u8S00EA3Ut4hdENps5ZUxUvxboMUeew941PFgf58Xx8BSvlUIwbiH4k6ayNG0JGY/exec";
 
     const params = new URLSearchParams(window.location.search);
-    const token = params.get("t");   // kita pakai ?t=... di GitHub
+    const token = params.get("t");   
 
     if (!token) {
       document.body.innerHTML = "<h2>Invalid access</h2><p>No token provided.</p>";
